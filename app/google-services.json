@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "25194573665",
+    "project_id": "sms-server-aaf43",
+    "storage_bucket": "sms-server-aaf43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25194573665:android:928c2283e8d786f5ac1f20",
+        "android_client_info": {
+          "package_name": "ir.hdb.sms_server"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25194573665-4bkm0ut2jbv0d6aeq2c35jls9q6ks71c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ir.hdb.sms_server",
+            "certificate_hash": "1ca157330045295517bb22630c358550e36e2a00"
+          }
+        },
+        {
+          "client_id": "25194573665-1d3gksjpeeh704go7edr4jkf8t3n5u85.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSmBMjvo1e8cbpVLTLVEarM3PrO2tWLWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25194573665-1d3gksjpeeh704go7edr4jkf8t3n5u85.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_card_bg"
+    style="@style/CardViewStyle"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="12dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/message_recipient"
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_height="wrap_content"
+        android:text="john doe"
+        android:maxLines="1"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_marginTop="8dp"
+        android:id="@+id/message_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="hi there ..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message_line" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/message_date"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:layout_marginEnd="8dp"
+        android:text="dd-mm-yyyy"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/message_recipient"
+        app:layout_constraintEnd_toStartOf="@+id/message_status"
+        app:layout_constraintStart_toEndOf="@+id/message_recipient"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/message_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_round_accent"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:maxLines="1"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Sent"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/message_recipient" />
+
+    <View
+        android:id="@+id/message_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray_vlight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message_recipient" />
+</androidx.constraintlayout.widget.ConstraintLayout>
