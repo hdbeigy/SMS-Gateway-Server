@@ -1,1 +1,1 @@
-# sms-server
+# SMS gateway server
