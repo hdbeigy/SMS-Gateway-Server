@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbar.toolbar)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = binding.viewPager
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun getPermission() {
+    private fun getPermission() {
         if (ContextCompat.checkSelfPermission(
                 applicationContext,
                 Manifest.permission.READ_SMS
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
     fun getSendPermission() {
         if (ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -91,5 +93,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == R.id.action_settings)
+            startActivity(Intent(this, SettingsActivity::class.java))
+
+        return super.onOptionsItemSelected(item)
     }
 }

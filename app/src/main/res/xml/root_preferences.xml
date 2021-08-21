@@ -1,0 +1,40 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/messages_header">
+
+        <SwitchPreferenceCompat
+            app:key="signature"
+            android:defaultValue="true"
+            app:title="@string/send_to_server"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            app:key="signature"
+            android:defaultValue="true"
+            app:title="@string/send_from_server"
+            app:useSimpleSummaryProvider="true" />
+
+        <SwitchPreferenceCompat
+            app:key="signature"
+            android:defaultValue="true"
+            app:title="@string/send_after_connect"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/auto_reply_header">
+
+        <SwitchPreferenceCompat
+            app:key="auto_reply_enable"
+            app:title="@string/auto_reply_enable_title" />
+
+        <EditTextPreference
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue=""
+            android:key="auto_reply_message"
+            android:selectAllOnFocus="true"
+            android:title="@string/auto_reply_message_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

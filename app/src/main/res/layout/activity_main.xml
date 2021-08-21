@@ -11,12 +11,9 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.Sms_server.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
+        <include
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize" />
+            layout="@layout/toolbar"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

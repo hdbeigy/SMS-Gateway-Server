@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">SMS Server</string>
+    <string name="app_version">0.4 - alpha</string>
+
     <string name="tab_text_1">Send</string>
     <string name="tab_text_2">Receive</string>
     <string name="default_notification_channel_id">smsserver</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="auto_reply_header">Auto Reply</string>
+
+    <!-- Messages Preferences -->
+    <string name="send_to_server">Send messages to server</string>
+    <string name="send_from_server">Send messages from server</string>
+    <string name="send_after_connect">Retry on connection lost</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="auto_reply_enable_title">Auto reply enable</string>
+    <string name="auto_reply_message_title">Auto reply message</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>
