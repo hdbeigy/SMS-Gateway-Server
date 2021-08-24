@@ -14,7 +14,7 @@
     <!-- Messages Preferences -->
     <string name="send_to_server">Send messages to server</string>
     <string name="send_from_server">Send messages from server</string>
-    <string name="send_after_connect">Retry on connection lost</string>
+    <string name="send_after_connect">Auto Resend if connection lost</string>
     <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->

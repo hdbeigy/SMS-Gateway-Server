@@ -18,8 +18,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         appPreference = AppPreference.getInstance(this)
 
-//        val pref = PreferenceManager.getDefaultSharedPreferences(this)
-//        Log.d("hdb-setting", pref.getString("auto_reply_message" , "notset").toString())
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        Log.d("hdb-setting", pref.getBoolean("auto_reply_enable" , false).toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent =

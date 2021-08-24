@@ -11,6 +11,7 @@ import android.telephony.SmsManager
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
+import androidx.preference.PreferenceManager
 import com.hdb.dreamyapp.utils.Utilities
 import ir.hdb.sms_server.apis.APIBaseCreator
 import ir.hdb.sms_server.database.DatabaseHelper
@@ -23,8 +24,11 @@ import retrofit2.Response
 
 
 class SmsReceiver : BroadcastReceiver() {
+
+
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == SMS_RECEIVED) {
+            val setting = PreferenceManager.getDefaultSharedPreferences(context)
             Log.d("hdb-----", "SMS_RECEIVED")
             val bundle = intent.extras
             if (bundle != null) {
@@ -59,7 +63,24 @@ class SmsReceiver : BroadcastReceiver() {
                 )
 
                 val id = DatabaseHelper(context).addReceivedMessage(messageModel)
-                sendMessage(context, id.toString(), "", message, sender)
+
+                if (setting.getString("reply_rule", "reply_no_server") == "reply_all") {
+                    val autoReplyMessage = setting.getString("auto_reply_message", "")
+
+                    if (!autoReplyMessage.isNullOrBlank() && setting.getBoolean(
+                            "auto_reply_enable",
+                            false
+                        )
+                    )
+                        sendSMS(
+                            context,
+                            autoReplyMessage,
+                            sender
+                        )
+                }
+
+                if (setting.getBoolean("message_to_server", true))
+                    sendMessage(context, id.toString(), "", message, sender)
                 // prevent any other broadcast receivers from receiving broadcast
                 // abortBroadcast();
             }
@@ -90,17 +111,52 @@ class SmsReceiver : BroadcastReceiver() {
 
                             Log.d("hdb---sendsms", jsonStr)
                             val json = JSONObject(jsonStr)
+                            val setting =
+                                PreferenceManager.getDefaultSharedPreferences(context)
 
                             if (json.getBoolean("status")) {
                                 DatabaseHelper(context).updateReceivedMessageStatus(messageId, 2)
-                                if (json.has("reply")) {
-                                    val replyMessage = json.getJSONObject("reply")
-                                    sendSMS(
-                                        context,
-                                        replyMessage.getString("message"),
-                                        replyMessage.getString("recipient")
+                                if (json.has("reply") && setting.getBoolean(
+                                        "message_from_server",
+                                        true
                                     )
+                                ) {
+                                    val replyMessages = json.getJSONArray("reply")
+                                    for (i in 0 until replyMessages.length()) {
+                                        val replyMessage = replyMessages.getJSONObject(i)
+                                        sendSMS(
+                                            context,
+                                            replyMessage.getString("message"),
+                                            replyMessage.getString("recipient")
+                                        )
+                                    }
                                 }
+                                if (!json.has("reply") || json.getJSONArray("reply")
+                                        .length() <= 0
+                                ) {
+
+
+                                    if (setting.getString(
+                                            "reply_rule",
+                                            "reply_no_server"
+                                        ) == "reply_no_server"
+                                    ) {
+                                        val autoReplyMessage =
+                                            setting.getString("auto_reply_message", "")
+
+                                        if (!autoReplyMessage.isNullOrBlank() && setting.getBoolean(
+                                                "auto_reply_enable",
+                                                false
+                                            )
+                                        )
+                                            sendSMS(
+                                                context,
+                                                autoReplyMessage,
+                                                recipient
+                                            )
+                                    }
+                                }
+
                             }
 
                         } catch (e: Exception) {
@@ -128,7 +184,13 @@ class SmsReceiver : BroadcastReceiver() {
         val id = db.addSentMessage(messageModel)
         val sms: SmsManager = SmsManager.getDefault()
         val sentPI: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent("SMS_SENT"), 0)
-        sms.sendMultipartTextMessage(recipient, null, arrayListOf(message), arrayListOf(sentPI), null)
+        sms.sendMultipartTextMessage(
+            recipient,
+            null,
+            arrayListOf(message),
+            arrayListOf(sentPI),
+            null
+        )
         db.updateSentMessageStatus(id.toString(), 2)
 
     }

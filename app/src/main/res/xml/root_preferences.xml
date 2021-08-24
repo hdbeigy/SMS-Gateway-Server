@@ -4,19 +4,19 @@
     <PreferenceCategory app:title="@string/messages_header">
 
         <SwitchPreferenceCompat
-            app:key="signature"
+            app:key="message_to_server"
             android:defaultValue="true"
             app:title="@string/send_to_server"
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            app:key="signature"
+            app:key="message_from_server"
             android:defaultValue="true"
             app:title="@string/send_from_server"
             app:useSimpleSummaryProvider="true" />
 
         <SwitchPreferenceCompat
-            app:key="signature"
+            app:key="auto_resend"
             android:defaultValue="true"
             app:title="@string/send_after_connect"
             app:useSimpleSummaryProvider="true" />
@@ -29,12 +29,13 @@
             app:key="auto_reply_enable"
             app:title="@string/auto_reply_enable_title" />
 
-        <MultiSelectListPreference
-            android:defaultValue="@array/reply_entries"
-            android:entries="@array/reply_values"
-
-            android:entryValues="@array/reply_entries"
-            android:key="multi_select_list_preference_1"
+        <ListPreference
+            app:defaultValue="reply_no_server"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="1"
+            android:entries="@array/reply_entries"
+            android:entryValues="@array/reply_values"
+            android:key="reply_rule"
             android:title="Reply Rule" />
 
         <EditTextPreference
