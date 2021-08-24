@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.provider.Settings
 import android.text.Html
 import android.text.Html.ImageGetter
 import android.text.Spanned
@@ -166,5 +167,9 @@ object Utilities {
         }
 
         return result
+    }
+    fun getAppId(context: Context): String? {
+        return Settings.Secure.getString(context.getContentResolver(),
+            Settings.Secure.ANDROID_ID);
     }
 }

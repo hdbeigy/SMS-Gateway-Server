@@ -13,7 +13,9 @@ import retrofit2.Response
 
 class RequestManager(var requestListener: RequestListener) {
     enum class RequestId {
-        SEND_MESSAGE}
+        SEND_MESSAGE,
+        LOGIN,
+    }
 
     private var context: Context? = null
 //    fun getIndex(userId: String?, brand: String?) {
@@ -24,6 +26,16 @@ class RequestManager(var requestListener: RequestListener) {
         APIBaseCreator.apiAdapter.sendMessage(deviceId, message, recipient)?.let {
             enque(
                 RequestId.SEND_MESSAGE,
+                it
+            )
+        };
+
+    }
+
+    fun login(username: String, password: String, deviceId: String, fcmToken: String) {
+        APIBaseCreator.apiAdapter.login(username, password, deviceId, fcmToken)?.let {
+            enque(
+                RequestId.LOGIN,
                 it
             )
         };

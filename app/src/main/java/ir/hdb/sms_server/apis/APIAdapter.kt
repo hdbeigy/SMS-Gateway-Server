@@ -18,4 +18,13 @@ interface APIAdapter {
         @Field("recipient") recipient: String
     ): Call<ResponseBody>?
 
+    @FormUrlEncoded
+    @POST("sms_server.php?do=login")
+    fun login(
+        @Field("username") username: String?,
+        @Field("password") password: String,
+        @Field("device_id") deviceId: String,
+        @Field("fcm_token") fcmToken: String
+    ): Call<ResponseBody>?
+
 }

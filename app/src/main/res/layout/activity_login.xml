@@ -69,6 +69,7 @@
             android:textSize="@dimen/font_size_medium" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
